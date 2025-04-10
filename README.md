@@ -1,4 +1,8 @@
-# The Sun Right Now: Screensaver and Standalone Application
+# The Sun Right Now Screensaver
+
+Desktop screensaver showing near realtime images of the sun, sourced from [NASA SDO](https://sdo.gsfc.nasa.gov/). Images update every 5 minutes. 
+
+Project built Using React + Vite and Electron to create the app window.
 
 First:
 ```
