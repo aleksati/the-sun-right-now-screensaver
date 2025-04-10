@@ -1,17 +1,39 @@
 {
   "name": "react-vite-electron-desktop-screensaver",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "A minimal Electron application",
+  "main": "main.js",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node api.js\"",
+    "dev": "concurrently \"vite\" \"electron .\" \"node api.js\"",
     "electron": "electron .",
-    "start": "concurrently \"npm run dev\" \"npm run electron\"",
+    "start": "npm run build && npm run electron",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:electron": "electron-builder"
+  },
+  "build": {
+    "appId": "thesunrightnow",
+    "productName": "The Sun Right Now",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "preloader.js",
+      "api.js"
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "mac": null,
+    "linux": null
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "electron-is-dev": "^3.0.1",
     "express": "^5.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -22,7 +44,9 @@
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
     "electron": "^35.1.4",
+    "electron-builder": "^26.0.12",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
