@@ -1,11 +1,15 @@
 // Hosts the node project as a desktop App using Electron
 
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
-const isDev = require("electron-is-dev").default; // Import the electron-is-dev package
+// const { app, BrowserWindow } = require("electron");
+// const path = require("path");
+// const isDev = require("electron-is-dev").default; // Import the electron-is-dev package
 
-// Start my Express server
-require("./api.js");
+import { app, BrowserWindow } from "electron";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Start my Express API server
+import "./api.mjs";
 
 // Function to create the main screensaver window
 function createWindow() {
@@ -16,7 +20,7 @@ function createWindow() {
     skipTaskbar: true,
     show: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preloader.js'),
+      // preload: path.join(__dirname, 'preloader.js'),
       nodeIntegration: true,
     },
   });
@@ -28,10 +32,12 @@ function createWindow() {
   // const startUrl = process.env.ELECTRON_START_URL || `file://${path.join(__dirname, "dist", "index.html")}`;
   // win.loadURL(startUrl);
 
-  if (isDev) {
+  if (false) {
     win.loadURL("http://localhost:8000");
     console.log("Loading from dev server:", "http://localhost:8000");
   } else {
+    const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+    const __dirname = path.dirname(__filename); // get the name of the directory
     const filePath = path.join(__dirname, "dist", "index.html");
     console.log("Loading from file:", filePath);
     win.loadFile(filePath);
