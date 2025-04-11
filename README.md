@@ -1,4 +1,4 @@
-# The Sun Right Now Screensaver
+# The Sun Right Now - Screensaver
 
 Desktop screensaver with slideshow of realtime NASA images of the sun. The images are fetched from the [NASA SDO](https://sdo.gsfc.nasa.gov/) database and refreshed every 5 minutes. Built with Nodejs, React and Electron. Available for Win and OSX.
 
