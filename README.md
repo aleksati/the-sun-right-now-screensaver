@@ -40,7 +40,7 @@ edit <script> and <link> paths in the ./dist/index.html files from src="/assets/
 2. npm run electron
 ```
 
-## Build into screensaver or desktop app
+## Build into screensaver (and desktop app)
 
 Check the releases tab for the newest releases.
  You can also:
