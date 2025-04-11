@@ -11,19 +11,22 @@ Check live browser version at [https://aleksati.net/thesunrightnow](https://alek
 
 # Usage
 
-First, from root dir:
+
+## Dev
+First:
 ```
+cd ROOT/DIR
 npm i
 ```
 
-Just dev:
+ dev:
 ```
 edit line 35 in ./main.js from false to true
 
 npm run dev
 ```
 
-The best way to check screensaver prod in dev:
+Check screensaver production build in dev mode:
 ```
 edit line 35 in ./main.j from true to false
 
@@ -34,7 +37,15 @@ edit <script> and <link> paths in the ./dist/index.html files from src="/assets/
 2. npm run electron
 ```
 
-To build: 
+## Build into screensaver or desktop app
+
+Check the releases tab for newest releases.
+ You can also:
+ ```
+cd ROOT/DIR
+npm i
+```
+Then:
 ```
 edit line 35 in ./main.js from true to false
 
