@@ -6,9 +6,9 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node api.mjs\" \"electron .\"",
-    "electron": "electron .",
-    "start": "npm run build && npm run electron",
+    "dev": "cross-env NODE_ENV=development concurrently \"vite\" \"node api.mjs\" \"electron .\"",
+    "electron": "cross-env NODE_ENV=development electron .",
+    "start": "npm run build && cross-env NODE_ENV=production npm run electron",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",

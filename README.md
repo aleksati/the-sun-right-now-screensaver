@@ -11,7 +11,9 @@ Check live browser version at [https://aleksati.net/thesunrightnow](https://alek
 
 # Usage
 
-Com on port localhost ports 8001 and 8000
+Com on port localhost ports 8001 and 8000.
+
+I had issues with the Electron isDev feature. It should tell me when the app is running in dev or production is main.js. process doesnt work beacuse the Electron main.js runs before that. Apparantly.
 
 ## Dev
 First:
