@@ -11,6 +11,8 @@ import { fileURLToPath } from "url";
 // Start my Express API server
 import "./api.mjs";
 
+// react-vite-electron-desktop-screensaver
+
 // Function to create the main screensaver window
 function createWindow() {
   const win = new BrowserWindow({

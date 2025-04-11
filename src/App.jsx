@@ -14,7 +14,10 @@ function App() {
       setText(data.message);
     };
 
-    setInterval(() => fetchSomeStuff(), 6000);
+    const interval = setInterval(() => fetchSomeStuff(), 6000);
+
+    return () => clearInterval(interval)
+    
   }, []);
 
   return (
