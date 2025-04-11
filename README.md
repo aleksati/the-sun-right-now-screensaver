@@ -12,7 +12,7 @@ Check live browser version at [https://aleksati.net/thesunrightnow](https://alek
 # Usage
 
 
-## Dev
+### Dev
 First:
 ```
 cd ROOT/DIR
@@ -37,7 +37,7 @@ edit <script> and <link> paths in the ./dist/index.html files from src="/assets/
 2. npm run electron
 ```
 
-## Build into screensaver or desktop app
+### Build into screensaver or desktop app
 
 Check the releases tab for newest releases.
  You can also:
