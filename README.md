@@ -11,6 +11,8 @@ Check live browser version at [https://aleksati.net/thesunrightnow](https://alek
 
 # Usage
 
+Com on port localhost ports 8001 and 8000
+
 ## Dev
 First:
 ```

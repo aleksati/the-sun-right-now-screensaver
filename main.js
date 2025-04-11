@@ -7,6 +7,7 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
+// import isDev from "electron-is-dev"
 
 // Start my Express API server
 import "./api.mjs";
@@ -20,7 +21,6 @@ function createWindow() {
     frame: false,
     alwaysOnTop: true,
     skipTaskbar: true,
-    show: true,
     webPreferences: {
       // preload: path.join(__dirname, 'preloader.js'),
       nodeIntegration: true,
@@ -28,7 +28,7 @@ function createWindow() {
   });
 
   // Log to see if we are in development mode or production
-  // console.log("isDev:", isDev); // ← TEMP: add this for debugging
+  //console.log("isDev:", isDev); // ← TEMP: add this for debugging
   // win.webContents.openDevTools()
 
   // const startUrl = process.env.ELECTRON_START_URL || `file://${path.join(__dirname, "dist", "index.html")}`;
