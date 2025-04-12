@@ -30,8 +30,9 @@ While running, you can also launch the Electron desktop app window by:
 npm run electron
 ```
 
-## Build
+The local API node server that fetches the images from NASA runs concurrently on port 8001. **NB!** This API also runs during production and might cause some security warnings on your machine.  
 
+## Build
 
 ### Build Test in Dev Mode
 To build the Electron app and then check the build in dev mode before production: 
@@ -47,11 +48,12 @@ To build the final executable (.exe) for the screensaver, first run:
 ```
 npm run build:electron
 ```
-Then, to make the screensaver: 
+Then, to make the screensaver on WIN: 
 ```
 1. edit extension of ./build/APP_NAME.exe to ./build/APP_NAME.scr.
 2. right click on the .scr file and hit Install 
 ```
-
-## Ports in use
-The dev server runs on port 8000. Com to the local API node server (that fetches the images from NASA) runs on port 8001. **NB!** The API port also running during production. 
+on OSX:
+```
+Coming soon
+```
