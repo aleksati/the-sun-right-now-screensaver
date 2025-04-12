@@ -23,12 +23,8 @@ function createWindow() {
     },
   });
 
-  // Log to see if we are in development mode or production
-  //console.log("env:",  process.env.NODE_ENV); // ← TEMP: add this for debugging
+  // for debugging
   // win.webContents.openDevTools()
-
-  // const startUrl = process.env.ELECTRON_START_URL || `file://${path.join(__dirname, "dist", "index.html")}`;
-  // win.loadURL(startUrl);
 
   if (isDev && checkBuild) {
     console.log("Dev and checkBuild env");
