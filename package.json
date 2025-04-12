@@ -2,17 +2,22 @@
   "name": "the-sun-right-now-screensaver",
   "private": true,
   "version": "0.0.1",
-  "description": "Images of the sun, right now, as a screensaver.",
+  "description": "Screensaver featuring a slideshow of near-realtime scientific images of the sun, provided by the NASA NDO satellite observatory.",
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development concurrently \"vite\" \"node api.mjs\" \"electron .\"",
-    "electron": "cross-env NODE_ENV=development electron .",
-    "start": "npm run build && cross-env NODE_ENV=production npm run electron",
+    "dev": "concurrently \"vite\" \"node api.mjs\"",
+    "electron": "electron .",
+    "start": "npm run build && npm run electron",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "build:electron": "electron-builder"
+    "build:electron": "npm run build && electron-builder"
+  },
+  "homepage": "https://github.com/aleksati/the-sun-right-now-screensaver",
+  "author": {
+    "name": "Aleksander Tidemann",
+    "email": "aleksandertid@gmail.com",
+    "url": "https://aleksati.net"
   },
   "build": {
     "appId": "the-sun-right-now-screensaver",
@@ -28,7 +33,13 @@
     "win": {
       "target": "portable"
     },
-    "mac": null,
+    "mac":  {
+      "target": "default",
+      "arch": [
+        "arm64",
+        "x64"
+      ]
+    },
     "linux": null
   },
   "dependencies": {

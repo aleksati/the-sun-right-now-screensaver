@@ -1,8 +1,8 @@
 # The Sun Right Now - Screensaver
 
-Screensaver (and desktop app) featuring a slideshow of near-realtime scientific images of the sun. The photos are fetched from the database of the [NASA SDO](https://sdo.gsfc.nasa.gov/) satellite observatory, which is currently orbiting Earth. The screensaver is auto-refreshed every 5 minutes in order to show the latest images. Built with Nodejs, React and Electron. Available for Windows and OSX.
+The Sun Right Now is a desktop screensaver showing a slideshow of near-realtime 4K images of the sun. The photos are fetched from the database of the [NASA SDO](https://sdo.gsfc.nasa.gov/) satellite observatory, which is currently orbiting Earth. The screensaver is auto-refreshed every 5 minutes in order to show the latest images. Built with Nodejs, React and Electron. Available for Windows and OSX.
 
-Check out the live browser version at [https://aleksati.net/thesunrightnow](https://aleksati.net/thesunrightnow)
+Check out the live browser version (HD) at: [https://aleksati.net/thesunrightnow](https://aleksati.net/thesunrightnow)
 
 <div align="left">
  <img src="/public/pic.jpg" width=600>
@@ -11,54 +11,47 @@ Check out the live browser version at [https://aleksati.net/thesunrightnow](http
 
 # Usage
 
-Com on port localhost ports 8001 and 8000.
-
-I had issues with the Electron isDev feature. It should tell me when the app is running in dev or production is main.js. process doesnt work beacuse the Electron main.js runs before that. Apparantly.
-
-## Dev
 First:
 ```
 cd ROOT/DIR
 npm i
 ```
 
- dev:
+## Dev
+
+Host the app for development at localhost:8000:
 ```
-edit line 35 in ./main.js from false to true
-
-npm run dev
-```
-
-Check screensaver production build in dev mode:
-```
-edit line 35 in ./main.j from true to false
-
-1. npm run build
-
-edit <script> and <link> paths in the ./dist/index.html files from src="/assets/..." to src="./assets/...".
-
-2. npm run electron
+1. ensure checkBuild flag in ./main.js line 11 is set to false.
+2. npm run dev
 ```
 
-## Build into screensaver (and desktop app)
-
-Check the releases tab for the newest releases.
- You can also:
- ```
-cd ROOT/DIR
-npm i
+While running, you can also launch the Electron desktop app window by:
 ```
-Then:
+npm run electron
 ```
-edit line 35 in ./main.js from true to false
 
-1. npm run build
+## Build
 
-edit <script> and <link> paths in the ./dist/index.html files from src="/assets/..." to src="./assets/...".
 
-2. npm run build:electron
-
-edit extension of ./build/APP_NAME.exe to ./build/APP_NAME.scr. 
-
-right click on .scr and hit install
+### Build Test in Dev Mode
+To build the Electron app and then check the build in dev mode before production: 
 ```
+1. set checkBuild flag in ./main.js line 11 to true.
+2. npm run start
+```
+This is handy for troubleshooting and testing.
+
+
+### Build Screensaver
+To build the final executable (.exe) for the screensaver, first run:
+```
+npm run build:electron
+```
+Then, to make the screensaver: 
+```
+1. edit extension of ./build/APP_NAME.exe to ./build/APP_NAME.scr.
+2. right click on the .scr file and hit Install 
+```
+
+## Ports in use
+The dev server runs on port 8000. Com to the local API node server (that fetches the images from NASA) runs on port 8001. **NB!** The API port also running during production. 

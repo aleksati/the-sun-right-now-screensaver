@@ -1,18 +1,14 @@
 // Hosts the node project as a desktop App using Electron
-
-// const { app, BrowserWindow } = require("electron");
-// const path = require("path");
-// const isDev = require("electron-is-dev").default; // Import the electron-is-dev package
-
 import { app, BrowserWindow } from "electron";
-import path from "path";
+import isDev from "electron-is-dev";
 import { fileURLToPath } from "url";
-// import isDev from "electron-is-dev"
+import path from "path";
 
 // Start my Express API server
 import "./api.mjs";
 
-// react-vite-electron-desktop-screensaver
+// for npm run start (checking prod build in dev mode).
+const checkBuild = true;
 
 // Function to create the main screensaver window
 function createWindow() {
@@ -28,16 +24,26 @@ function createWindow() {
   });
 
   // Log to see if we are in development mode or production
-  console.log("env:",  process.env.NODE_ENV); // ← TEMP: add this for debugging
+  //console.log("env:",  process.env.NODE_ENV); // ← TEMP: add this for debugging
   // win.webContents.openDevTools()
 
   // const startUrl = process.env.ELECTRON_START_URL || `file://${path.join(__dirname, "dist", "index.html")}`;
   // win.loadURL(startUrl);
 
-  if (false) {
+  if (isDev && checkBuild) {
+    console.log("Dev and checkBuild env");
+    const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+    const __dirname = path.dirname(__filename); // get the name of the directory
+    const filePath = path.join(__dirname, "dist", "index.html");
+    console.log("Loading from file:", filePath);
+    win.loadFile(filePath);
+  } else if (isDev) {
+    console.log("Dev env");
     win.loadURL("http://localhost:8000");
     console.log("Loading from dev server:", "http://localhost:8000");
   } else {
+    // this is production
+    console.log("Production env");
     const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
     const __dirname = path.dirname(__filename); // get the name of the directory
     const filePath = path.join(__dirname, "dist", "index.html");

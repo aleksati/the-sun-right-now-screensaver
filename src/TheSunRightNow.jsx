@@ -16,7 +16,7 @@ const TheSunRightNow = () => {
       setIsLoading(true);
       const res = await fetch("http://localhost:8001/api/thesunrightnow");
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       setImgFileNames(data);
       setIsLoading(false);
       setIsReady(true);
