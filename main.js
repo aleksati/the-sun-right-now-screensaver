@@ -8,7 +8,7 @@ import path from "path";
 import "./api.mjs";
 
 // for npm run start (checking prod build in dev mode).
-const checkBuild = true;
+const checkBuild = false;
 
 // Function to create the main screensaver window
 function createWindow() {
