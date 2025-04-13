@@ -5,7 +5,7 @@ The Sun Right Now is a desktop screensaver showing slideshows of realtime 4K ima
 Check out the live browser version at: [https://aleksati.net/thesunrightnow](https://aleksati.net/thesunrightnow)
 
 <div align="left">
- <img src="./public/pic2.png">
+ <img src="./public/pic.png">
 </div>
 </br>
 
