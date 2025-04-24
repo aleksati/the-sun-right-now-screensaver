@@ -1,7 +1,7 @@
 {
   "name": "the-sun-right-now-screensaver",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Desktop screensaver showing slideshows of near-realtime 4K images of the sun, provided by the NASA SDO satellite observatory.",
   "main": "main.js",
   "type": "module",
@@ -33,27 +33,7 @@
     "win": {
       "target": "portable"
     },
-    "mac": {
-      "target": ["dmg"],
-      "arch": ["x64", "arm64"],
-      "identity": null,
-      "hardenedRuntime": true,
-      "category": "public.app-category.utilities"
-    },
-    "dmg": {
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
+    "mac": null,
     "linux": null
   },
   "dependencies": {

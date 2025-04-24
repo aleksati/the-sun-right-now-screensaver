@@ -1,17 +1,17 @@
 // Hosts the node project as a desktop App using Electron
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, screen } from "electron";
 import isDev from "electron-is-dev";
 import { fileURLToPath } from "url";
 import path from "path";
 
-// Start my Express API server
+// Start my Express API server for fetchin images
 import "./api.mjs";
 
-// for npm run start (checking prod build in dev mode).
+//true if running "npm run start" (checking prod build in dev mode). false for dev and production.
 const checkBuild = false;
 
 // Function to create the main screensaver window
-function createWindow() {
+const createWindow = () => {
   const win = new BrowserWindow({
     fullscreen: true,
     frame: false,
@@ -53,7 +53,22 @@ function createWindow() {
       app.quit();
     }
   });
-}
+
+  // Extra exit method for mouse movements
+  const monitorMouseMovement = () => {
+    let lastPos = screen.getCursorScreenPoint();
+    const interval = setInterval(() => {
+      const currentPos = screen.getCursorScreenPoint();
+      if (currentPos.x !== lastPos.x || currentPos.y !== lastPos.y) {
+        clearInterval(interval);
+        app.quit();
+      }
+      lastPos = currentPos;
+    }, 1000); // check every second
+  };
+
+  monitorMouseMovement();
+};
 
 // Optional: Config window (currently just logs)
 function showConfig() {

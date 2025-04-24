@@ -1,6 +1,9 @@
 # The Sun Right Now - Screensaver
 
-The Sun Right Now is a desktop screensaver showing slideshows of realtime 4K images of the sun. The photos are fetched from the database of the [NASA SDO](https://sdo.gsfc.nasa.gov/) satellite observatory, which is currently orbiting Earth. The screensaver is auto-refreshed every 5 minutes in order to show the latest images. Built with Nodejs, React and Electron. Available for Windows and OSX.
+The Sun Right Now is a desktop screensaver showing 4K image slideshows of the sun. The photos are shot and stored by the [NASA SDO](https://sdo.gsfc.nasa.gov/) in realtime, a satellite observatory which is currently orbiting Earth. The screensaver is auto-refreshed every 5 minutes in order to show the latest images on-screen. 
+
+Built with Nodejs, React and Electron. 
+Available for Windows (and OSX soon).
 
 Check out the live browser version at: [https://aleksati.net/thesunrightnow](https://aleksati.net/thesunrightnow)
 
@@ -57,3 +60,29 @@ on OSX:
 ```
 Coming soon
 ```
+
+<!-- 
+For package.json when Mac build
+
+"mac" : {
+      "target": ["dmg"],
+      "arch": ["x64", "arm64"],
+      "identity": null,
+      "hardenedRuntime": true,
+      "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }, 
+    -->
