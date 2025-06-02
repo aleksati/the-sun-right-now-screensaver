@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useWindowSize from "./hooks/useWindowSize";
-// import { Img } from "react-image";
 
-// Show slideshow of realtime NASA images of the sun. The images are fetched from the NASA SDO database (../pages/api/sun.api), and updated every 5 minutes.
+// Show slideshow of real-time NASA images of the sun. 
+// The images are fetched from the NASA SDO database (../api.mjs)
+// and updated every 5 minutes.
 const TheSunRightNow = () => {
   const [currIdx, setCurrIdx] = useState(0);
   const [imgFileNames, setImgFileNames] = useState([""]);
