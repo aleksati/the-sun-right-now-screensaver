@@ -4,14 +4,14 @@ The Sun Right Now is a desktop screensaver that displays real-time 4K images of 
 
 Available for Windows (and OSX soon).
 
-For a quick preview, check out a live browser version here - [https://aleksati.net/thesunrightnow](https://aleksati.net/thesunrightnow)
+For a quick preview, check out a live browser version [here](https://aleksati.net/thesunrightnow-preview).
 
 <div align="left">
  <img src="./public/pic.png">
 </div>
 </br>
 
-# Usage
+# Dev
 
 First:
 ```
@@ -19,7 +19,7 @@ cd ROOT/DIR
 npm i
 ```
 
-## Dev
+## Local dev
 
 Host the app for development at localhost:8000:
 ```
