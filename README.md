@@ -19,7 +19,7 @@ cd ROOT/DIR
 npm i
 ```
 
-## Local dev
+## Local Dev
 
 Host the app for development at localhost:8000:
 ```
