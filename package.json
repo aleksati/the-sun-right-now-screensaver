@@ -33,7 +33,32 @@
     "win": {
       "target": "portable"
     },
-    "mac": null,
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "arch": [
+        "x64",
+        "arm64"
+      ],
+      "identity": null,
+      "hardenedRuntime": true,
+      "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
     "linux": null
   },
   "dependencies": {

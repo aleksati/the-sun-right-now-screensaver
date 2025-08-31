@@ -63,9 +63,28 @@ Coming soon
 <!-- 
 For package.json when Mac build
 
-"mac" : {
-      "target": ["dmg"],
-      "arch": ["x64", "arm64"],
+  "build": {
+    "appId": "the-sun-right-now-screensaver",
+    "productName": "The Sun Right Now",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "api.mjs"
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "arch": [
+        "x64",
+        "arm64"
+      ],
       "identity": null,
       "hardenedRuntime": true,
       "category": "public.app-category.utilities"
@@ -83,5 +102,28 @@ For package.json when Mac build
           "path": "/Applications"
         }
       ]
-    }, 
+    },
+    "linux": null
+  },
+
+
+    WINDOWS:
+      },
+  "build": {
+    "appId": "the-sun-right-now-screensaver",
+    "productName": "The Sun Right Now",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "api.mjs"
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "mac": null,
+    "linux": null
+  },
     -->
