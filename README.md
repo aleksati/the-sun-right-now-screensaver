@@ -35,6 +35,10 @@ npm run electron
 The local API node server that fetches the images from NASA runs concurrently on port 8001. **NB!** This API also runs during production and might cause some security warnings on your machine.  
 
 ## Build
+For simple build:
+```
+npm run build
+```
 
 ### Build Test in Dev Mode
 To build the Electron app and then check the build in dev mode before production: 
@@ -48,7 +52,8 @@ This is handy for troubleshooting and testing.
 ### Build Screensaver
 To build the final executable (.exe) for the screensaver, first run:
 ```
-npm run build:electron
+1. set checkBuild flag in ./main.js line 11 to false.
+2. npm run build:electron
 ```
 Then, to make the screensaver on WIN: 
 ```
@@ -107,16 +112,7 @@ For package.json when Mac build
   },
 
 
-    WINDOWS:
-      },
-  "build": {
-    "appId": "the-sun-right-now-screensaver",
-    "productName": "The Sun Right Now",
-    "files": [
-      "dist/**/*",
-      "main.js",
-      "api.mjs"
-    ],
+    WINDOWS build
     "directories": {
       "output": "build"
     },

@@ -2,7 +2,7 @@
   "name": "the-sun-right-now-screensaver",
   "private": true,
   "version": "1.0.0",
-  "description": "Desktop screensaver showing slideshows of near-realtime 4K images of the sun, provided by the NASA SDO satellite observatory.",
+  "description": "The Sun Right Now is a desktop screensaver that displays colorful 4K images of the sun in a cool slideshow. The photos are real-time (minus 8 minutes, due to the Earth's distance from the sun) and retrieved from the NASA SDO, a satellite observatory currently orbiting the Earth.",
   "main": "main.js",
   "type": "module",
   "scripts": {
@@ -11,13 +11,14 @@
     "start": "npm run build && npm run electron",
     "build": "vite build",
     "lint": "eslint .",
-    "build:electron": "npm run build && electron-builder"
+    "build:electron": "npm run build && electron-builder",
+    "build:mac": "npm run build && electron-builder --mac"
   },
   "homepage": "https://github.com/aleksati/the-sun-right-now-screensaver",
   "author": {
     "name": "Aleksander Tidemann",
     "email": "aleksandertid@gmail.com",
-    "url": "https://aleksati.net"
+    "url": "https://github.com/aleksati/the-sun-right-now-screensaver"
   },
   "build": {
     "appId": "the-sun-right-now-screensaver",
@@ -25,7 +26,8 @@
     "files": [
       "dist/**/*",
       "main.js",
-      "api.mjs"
+      "api.mjs",
+      "package.json"
     ],
     "directories": {
       "output": "build"
@@ -35,31 +37,25 @@
     },
     "mac": {
       "target": [
-        "dmg"
-      ],
-      "arch": [
-        "x64",
-        "arm64"
-      ],
-      "identity": null,
-      "hardenedRuntime": true,
-      "category": "public.app-category.utilities"
-    },
-    "dmg": {
-      "contents": [
         {
-          "x": 130,
-          "y": 220
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
         },
         {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
         }
-      ]
-    },
-    "linux": null
+      ],
+      "category": "public.app-category.education",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
+    }
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.3",
