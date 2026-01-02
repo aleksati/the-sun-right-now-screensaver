@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Electron app
         run: |
-          npx electron-builder --mac dmg zip --${{ matrix.arch }}
+          npx electron-builder --mac dmg zip --${{ matrix.arch }} --publish=never
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
