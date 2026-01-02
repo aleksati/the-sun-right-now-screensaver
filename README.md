@@ -65,6 +65,8 @@ on OSX:
 Coming soon
 ```
 
+I use GitHub actions via the ".github/workflows/mac-builder.yml". Set up a custom Action in github that makes the DMG and publishes it to releases.
+
 <!-- 
 For package.json when Mac build
 
