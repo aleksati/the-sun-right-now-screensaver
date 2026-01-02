@@ -22,8 +22,9 @@
     "url": "https://github.com/aleksati/the-sun-right-now-screensaver"
   },
   "build": {
-    "appId": "the-sun-right-now-screensaver",
-    "productName": "The Sun Right Now",
+    "appId": "com.aleksati.thesunrightnow",
+    "productName": "TheSunRightNow",
+    "executableName": "TheSunRightNow",
     "files": [
       "dist/**/*",
       "main.js",
