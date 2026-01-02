@@ -1,75 +1,84 @@
 import express from "express";
 import cors from "cors";
 
-const app = express();
-const port = 8001;
+// wrap my api in a function so its safer to run it in prod.
+let server; // ADD: keep reference so it doesn't start twice
 
-app.use(cors());
+export function startAPI() {
+  // ADD: wrapper
+  if (server) return; // ADD: prevent double-start
 
-app.use(express.json());
+  const app = express();
+  const port = 8001;
 
-const getCurrDate = () => {
-  // get current date in format string "YYYY-MM-DD"
-  let dateObj = new Date();
+  app.use(cors());
+  app.use(express.json());
 
-  let year = String(dateObj.getUTCFullYear());
+  const getCurrDate = () => {
+    // get current date in format string "YYYY-MM-DD"
+    let dateObj = new Date();
 
-  let month = String(dateObj.getUTCMonth() + 1); // get month 1-12
-  month = Number(month) < 10 ? "0" + month : month;
+    let year = String(dateObj.getUTCFullYear());
 
-  let day = String(dateObj.getUTCDate());
-  day = Number(day) < 10 ? "0" + day : day;
+    let month = String(dateObj.getUTCMonth() + 1); // get month 1-12
+    month = Number(month) < 10 ? "0" + month : month;
 
-  return `${year}-${month}-${day}`;
-};
+    let day = String(dateObj.getUTCDate());
+    day = Number(day) < 10 ? "0" + day : day;
 
-app.get("/api/thesunrightnow", async (req, res) => {
-  // retrieve new imgfilenames from the NASA server.
-  // get date "2025-12-24" and make "2025/12/24"
-  let date = getCurrDate();
-  date = date.replaceAll("-", "/");
+    return `${year}-${month}-${day}`;
+  };
 
-  const baseUrl = `https://sdo.gsfc.nasa.gov/assets/img/browse/${date}/`;
-  const res2 = await fetch(baseUrl);
-  const html = await res2.text();
+  app.get("/api/thesunrightnow", async (req, res) => {
+    // retrieve new imgfilenames from the NASA server.
+    // get date "2025-12-24" and make "2025/12/24"
+    let date = getCurrDate();
+    date = date.replaceAll("-", "/");
 
-  // Match all hrefs ending in .jpg
-  const imageRegex = /href="(.*?\.jpg)"/g;
-  const matches = [...html.matchAll(imageRegex)];
+    const baseUrl = `https://sdo.gsfc.nasa.gov/assets/img/browse/${date}/`;
+    const res2 = await fetch(baseUrl);
+    const html = await res2.text();
 
-  // Build full URLs from matches
-  const filenames = matches.map((match) => baseUrl + match[1]);
+    // Match all hrefs ending in .jpg
+    const imageRegex = /href="(.*?\.jpg)"/g;
+    const matches = [...html.matchAll(imageRegex)];
 
-  // Sort by filename descending (based on timestamp in filename)
-  const sorted = filenames.sort().reverse();
+    // Build full URLs from matches
+    const filenames = matches.map((match) => baseUrl + match[1]);
 
-  // get latest 16 filenames
-  const lastSixteen = sorted.slice(0, 16);
+    // Sort by filename descending (based on timestamp in filename)
+    const sorted = filenames.sort().reverse();
 
-  // choose the first filename of each set of 4. ["", "", "", "", "take this one", "", "" etc.]
-  // const imgFileNames = lastSixteen.filter((e, i) => i % 4 == 0);
+    // get latest 16 filenames
+    const lastSixteen = sorted.slice(0, 16);
 
-  // every images comes in 3 resolutions, 512, 2048, 4096.
-  // only grab the images with 2048 resolution.
-  // this leaves 4 images in total.
-  const imgFileNames = lastSixteen.filter((e) => e.includes("4096"));
+    // choose the first filename of each set of 4. ["", "", "", "", "take this one", "", "" etc.]
+    // const imgFileNames = lastSixteen.filter((e, i) => i % 4 == 0);
 
-  res.status(200).json(imgFileNames);
-});
+    // every images comes in 3 resolutions, 512, 2048, 4096.
+    // only grab the images with 2048 resolution.
+    // this leaves 4 images in total.
+    const imgFileNames = lastSixteen.filter((e) => e.includes("4096"));
 
-const server = app.listen(port, () => {
-  console.log(`Local API listening at http://localhost:${port}`);
-});
-
-// gracefully closing the server when .exe is quit or interuppted
-process.on("SIGTERM", () => {
-  server.close(() => {
-    console.log("HTTP server closed.");
+    res.status(200).json(imgFileNames);
   });
-});
 
-process.on("SIGINT", () => {
-  server.close(() => {
-    console.log("HTTP server closed.");
+  const serverInstance = app.listen(port, () => {
+    console.log(`Local API listening at http://localhost:${port}`);
   });
-});
+
+  server = serverInstance; // ADD: store reference
+
+  // gracefully closing the server when .exe is quit or interuppted
+  process.on("SIGTERM", () => {
+    server?.close(() => {
+      console.log("HTTP server closed.");
+    });
+  });
+
+  process.on("SIGINT", () => {
+    server?.close(() => {
+      console.log("HTTP server closed.");
+    });
+  });
+}

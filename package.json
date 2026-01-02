@@ -6,7 +6,8 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node api.mjs\"",
+    "devOld": "concurrently \"vite\" \"node api.mjs\"",
+    "dev": "concurrently \"vite\" \"node api.dev.js\"",
     "electron": "electron .",
     "start": "npm run build && npm run electron",
     "build": "vite build",

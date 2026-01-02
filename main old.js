@@ -3,10 +3,9 @@ import { app, BrowserWindow, screen } from "electron";
 import isDev from "electron-is-dev";
 import { fileURLToPath } from "url";
 import path from "path";
-import { startAPI } from "./api.mjs";
 
 // Start my Express API server for fetchin images
-// import "./api.mjs";
+import "./api.mjs";
 
 //true if running "npm run start" (checking prod build in dev mode). false for dev and production.
 const checkBuild = false;
@@ -88,9 +87,6 @@ function showConfig() {
 const args = process.argv.slice(1); // slice out the first one (electron binary)
 
 app.whenReady().then(() => {
-  // Start my Express API server for fetchin images
-  startAPI();
-
   // Start my Express API server for fetchin images
   if (args.some((arg) => arg.toLowerCase() === "/s")) {
     createWindow();
