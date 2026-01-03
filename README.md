@@ -1,10 +1,11 @@
 # The Sun Right Now - Screensaver
 
+
 The Sun Right Now is a desktop screensaver that displays colorful 4K images of the sun in a cool slideshow. The photos are real-time (minus 8 minutes, due to the Earth's distance from the sun) and retrieved from the [NASA SDO](https://sdo.gsfc.nasa.gov/), a satellite observatory currently orbiting the Earth. The images are updated automatically every 5 minutes to ensure only the very latest captures are shown. Built with Nodejs, React and Electron. 
 
 Available for Windows (and OSX soon).
 
-For a quick preview, check out a live browser version [here](https://aleksati.net/thesunrightnow-preview).
+For a quick preview, check out a live browser demo [here](https://aleksati.net/thesunrightnow-preview).
 
 <div align="left">
  <img src="./public/pic.png">
@@ -13,26 +14,26 @@ For a quick preview, check out a live browser version [here](https://aleksati.ne
 
 # Dev
 
-First:
+First, install all project dependencies:
 ```
 cd ROOT/DIR
 npm i
 ```
 
+**NB**: the app sets up a local API server at localhost port 8001 to fetch the images from NASA. This is true both the prod and the dev environment. So, this port needs to be open/free and might cause some security warnings on your machine. The port number can easily be configured in the api.mjs file.
+
 ## Local Dev
 
-Host the app for development at localhost:8000:
+The development environment runs the app on localhost port 8001. In the root dir:
 ```
-1. ensure checkBuild flag in ./main.js line 11 is set to false.
+1. ensure checkBuild flag in ./main.js line 18 is set to false.
 2. npm run dev
 ```
 
-While running, you can also launch the Electron desktop app window by:
+While running, you can also launch the Electron desktop app window by running:
 ```
 npm run electron
 ```
-
-The local API node server that fetches the images from NASA runs concurrently on port 8001. **NB!** This API also runs during production and might cause some security warnings on your machine.  
 
 ## Build
 For simple build:
@@ -43,7 +44,7 @@ npm run build
 ### Build Test in Dev Mode
 To build the Electron app and then check the build in dev mode before production: 
 ```
-1. set checkBuild flag in ./main.js line 11 to true.
+1. set checkBuild flag in ./main.js line 18 to true.
 2. npm run start
 ```
 This is handy for troubleshooting and testing.
@@ -61,11 +62,7 @@ Then, to make the screensaver on WIN:
 2. right click on the .scr file and hit Install 
 ```
 on OSX:
-```
-Coming soon
-```
-
-I use GitHub actions via the ".github/workflows/mac-builder.yml". Set up a custom Action in github that makes the DMG and publishes it to releases.
+Coming soon..
 
 <!-- 
 For package.json when Mac build

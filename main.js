@@ -8,8 +8,14 @@ import { startAPI } from "./api.mjs";
 // Start my Express API server for fetchin images
 // import "./api.mjs";
 
+//NEW!!
+// Maybe this to make macOS may run the app headless
+if (process.platform === "darwin") {
+  app.setActivationPolicy("regular");
+}
+
 //true if running "npm run start" (checking prod build in dev mode). false for dev and production.
-const checkBuild = false;
+const checkBuild = true;
 
 // Function to create the main screensaver window
 const createWindow = () => {
@@ -18,8 +24,12 @@ const createWindow = () => {
     frame: false,
     alwaysOnTop: true,
     skipTaskbar: true,
+
+    // NEW
+    // show: false,
+    // focusable: true,
+
     webPreferences: {
-      // preload: path.join(__dirname, 'preloader.js'),
       nodeIntegration: true,
     },
   });
@@ -55,6 +65,12 @@ const createWindow = () => {
     }
   });
 
+  // NEW!!
+  // win.once("ready-to-show", () => {
+  //   win.show();
+  //   win.focus();
+  // });
+
   // Extra exit method for mouse movements
   const monitorMouseMovement = () => {
     let lastPos = screen.getCursorScreenPoint();
@@ -77,13 +93,6 @@ function showConfig() {
   // You can implement a settings window here if desired
 }
 
-// app.whenReady().then(() => {
-//   createWindow();
-//   app.on('activate', function () {
-//     if (BrowserWindow.getAllWindows().length === 0) createWindow();
-//   });
-// });
-
 // // Handle command-line arguments
 const args = process.argv.slice(1); // slice out the first one (electron binary)
 
@@ -101,8 +110,14 @@ app.whenReady().then(() => {
     // Preview mode (not handled here)
     app.quit();
   } else {
+    
     // Default behavior: launch screensaver
     createWindow();
+
+    // macOS apps generally continue running even without any windows open. Activating the app when no windows are available should open a new one.
+    app.on("activate", () => {
+      if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    });
   }
 });
 
